@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TruncatePipe } from './shared/pipes/truncate.pipe';
 import { CartComponent } from './cart/cart.component';
 import { FormsModule } from '@angular/forms';
+import { PaymentsService } from './shared/payments.service';
 
 
 @NgModule({
@@ -15,7 +16,7 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     NavbarComponent,
     TruncatePipe,
-    CartComponent
+    CartComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,7 +24,7 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [ PaymentsService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
