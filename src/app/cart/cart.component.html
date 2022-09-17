@@ -86,11 +86,10 @@
                         ${{(calculateSubtotal()*1.06).toFixed(2)}}
                     </div>
                   </div>
-                <a href="#">
-                  <button class="flex justify-center w-full px-10 py-3 mt-6 font-medium text-white bg-indigo-700 rounded shadow item-center hover:bg-gray-700 focus:shadow-outline focus:outline-none transition ease-in-out">
+                  <button class="flex justify-center w-full px-10 py-3 mt-6 font-medium text-white bg-indigo-700 rounded shadow item-center hover:bg-indigo-400 focus:shadow-outline focus:outline-none transition ease-in-out disabled:bg-gray-700"
+                    [disabled]="cart.length == 0" (click)="checkout()" type="button">
                     Procceed to checkout
                   </button>
-                </a>
             </div>
           </div>
         </div>

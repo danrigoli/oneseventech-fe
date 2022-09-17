@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CartItem } from '../shared/interfaces/cart.interface';
+import { PaymentsService } from '../shared/payments.service';
 
 @Component({
   selector: 'app-cart',
@@ -8,7 +10,7 @@ import { CartItem } from '../shared/interfaces/cart.interface';
 })
 export class CartComponent implements OnInit {
   cart: CartItem[] = JSON.parse(localStorage.getItem('cart') ?? '[]');
-  constructor() { }
+  constructor(private paymentsService: PaymentsService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -25,5 +27,12 @@ export class CartComponent implements OnInit {
 
   calculateSubtotal() {
     return this.cart.reduce((acc: number, item: CartItem) => acc + (item.product.price * item.quantity), 0);
+  }
+
+  checkout() {
+    this.paymentsService.createPayment(this.cart).subscribe((data) => {
+      localStorage.setItem('cart', '[]');
+      this.router.navigateByUrl(`/checkout/${data.id}`);
+    })
   }
 }
