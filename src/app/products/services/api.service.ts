@@ -13,7 +13,7 @@ export class ApiService {
 
     public constructor(public http: HttpClient) {}
 
-    public getProducts<T> (params?: { [key: string]: string }): Observable<Product[]> {
+    public getProducts(params?: { [key: string]: string }): Observable<Product[]> {
         return this.http.get<Product[]>(this.api + "/products", {params})
     }
 
