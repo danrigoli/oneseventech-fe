@@ -1,0 +1,99 @@
+<div class="flex justify-center my-6">
+    <div class="flex flex-col w-full p-8 text-gray-800 bg-white shadow-lg md:w-4/5">
+        <h1 class="font-bold text-3xl pb-10">Shopping Cart</h1>
+      <div class="flex flex-col xl:flex-row xl:space-x-16">
+        <div class="w-full xl:w-2/3">
+            <table class="w-full text-sm lg:text-base" cellspacing="0" *ngIf="cart.length > 0">
+                <thead>
+                  <tr class="h-12 uppercase">
+                    <th class="hidden md:table-cell"></th>
+                    <th class="text-left">Product</th>
+                    <th class="lg:text-right text-left pl-5 lg:pl-0">
+                      <span class="lg:hidden" title="Quantity">Qtd</span>
+                      <span class="hidden lg:inline">Quantity</span>
+                    </th>
+                    <th class="hidden text-right md:table-cell">Unit price</th>
+                    <th class="text-right">Total price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let product of cart">
+                    <td class="hidden pb-4 md:table-cell">
+                        <img [src]="product.product.image" class="w-20 rounded" alt="Thumbnail">
+                    </td>
+                    <td>
+                        <p class="mb-2">{{product.product.title}}</p>
+                        <button (click)="removeItem(product)" class="text-gray-700">
+                        <small class="text-red-700">Remove item</small>
+                        </button>
+                    </td>
+                    <td>
+                      <div class="w-20 h-10 ml-auto">
+                        <div class="relative flex flex-row w-full h-8">
+                        <button (click)="modifyQuantity(product, product.quantity-1)">-</button>
+                        <input type="number" [(ngModel)]="product.quantity"
+                          class="w-full mx-2 font-semibold text-center text-gray-700 bg-gray-200 outline-none focus:outline-none hover:text-black focus:text-black" />
+                        <button (click)="modifyQuantity(product, product.quantity+1)">+</button>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="hidden text-right md:table-cell">
+                      <span class="text-sm lg:text-base font-medium">
+                        ${{product.product.price}}
+                      </span>
+                    </td>
+                    <td class="text-right">
+                      <span class="text-sm lg:text-base font-medium">
+                        ${{product.product.price * product.quantity}}
+                      </span>
+                    </td>
+                  </tr> 
+                </tbody>
+            </table>
+            <div *ngIf="cart.length == 0" class="flex justify-center">
+              <p class="text-2xl">Your cart is empty</p>
+            </div>
+        </div>
+
+        <div class="xl:flex xl:w-1/3">
+          <div class="py-10 xl:py-0 xl:px-2">
+            <div class="p-4 bg-gray-100 rounded-full">
+              <h1 class="ml-2 font-bold uppercase">Order Details</h1>
+            </div>
+            <div class="p-4">
+              <p class="mb-6 italic">Shipping and additionnal costs are calculated based on values you have entered</p>
+                <div class="flex justify-between border-b">
+                  <div class="m-2 text-xl font-bold text-center text-gray-800">
+                    Subtotal
+                  </div>
+                  <div class="m-2 text-xl font-bold text-center text-gray-800">
+                    ${{calculateSubtotal()}}
+                  </div>
+                </div>
+                  <div class="flex justify-between pt-4 border-b">
+                    <div class="m-2 text-xl font-bold text-center text-gray-800">
+                        Tax
+                    </div>
+                    <div class="m-2 text-xl font-bold text-center text-gray-800">
+                        ${{(calculateSubtotal()*0.06).toFixed(2)}}
+                    </div>
+                  </div>
+                  <div class="flex justify-between pt-4 border-b">
+                    <div class="m-2 text-xl font-bold text-center text-gray-800">
+                        Total
+                    </div>
+                    <div class="m-2 text-xl font-bold text-center text-gray-800">
+                        ${{(calculateSubtotal()*1.06).toFixed(2)}}
+                    </div>
+                  </div>
+                <a href="#">
+                  <button class="flex justify-center w-full px-10 py-3 mt-6 font-medium text-white bg-indigo-700 rounded shadow item-center hover:bg-gray-700 focus:shadow-outline focus:outline-none transition ease-in-out">
+                    Procceed to checkout
+                  </button>
+                </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
