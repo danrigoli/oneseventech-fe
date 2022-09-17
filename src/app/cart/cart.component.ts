@@ -10,6 +10,7 @@ import { PaymentsService } from '../shared/payments.service';
 })
 export class CartComponent implements OnInit {
   cart: CartItem[] = JSON.parse(localStorage.getItem('cart') ?? '[]');
+  loading = false;
   constructor(private paymentsService: PaymentsService, private router: Router) { }
 
   ngOnInit(): void {
@@ -30,6 +31,7 @@ export class CartComponent implements OnInit {
   }
 
   checkout() {
+    this.loading = true;
     this.paymentsService.createPayment(this.cart).subscribe((data) => {
       localStorage.setItem('cart', '[]');
       this.router.navigateByUrl(`/checkout/${data.id}`);
