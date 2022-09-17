@@ -1,0 +1,13 @@
+<div class="bg-white">
+    <div class="mx-auto max-w-2xl pb-16 px-4 sm:pb-24 sm:px-6 lg:max-w-7xl lg:px-8">
+        <div class="lg:text-center py-16 sm:py-24">
+            <h2 class="text-lg font-semibold text-indigo-600">Products</h2>
+            <p class="mt-2 text-3xl font-bold leading-8 tracking-tight text-gray-900 sm:text-4xl">Browse the new collection of OneSeven</p>
+            <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">This year, our new summer collection will shelter you from the harsh elements of a world that doesn't care if you live or die.</p>
+          </div>
+  
+      <div class="grid grid-cols-2 gap-y-10 gap-x-6 lg:grid-cols-4 xl:gap-x-8">
+        <app-product-card *ngFor="let product of products" [product]="product" (productAdded)="addProductToCart($event)"></app-product-card>
+      </div>
+    </div>
+  </div>
