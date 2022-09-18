@@ -7,16 +7,16 @@ import { map, catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class PaymentExistsGuard implements CanActivate {
-  
+export class PaymentSuccessfulGuard implements CanActivate {
+
   constructor(private paymentsService: PaymentsService, private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       return this.paymentsService.getPayment(route.params['id'] ?? '').pipe(
         map((payment) => {
           if (payment) {
-            if (payment.status == 'succeeded') {
-              this.router.navigate(['/checkout/success' + route.params['id']]);
+            if (payment.status !== 'succeeded') {
+              this.router.navigate(['/checkout/' + route.params['id']]);
               return false
             }
             return true;
