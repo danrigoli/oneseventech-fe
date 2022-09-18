@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartItem } from '../shared/interfaces/cart.interface';
 import { PaymentsService } from '../shared/payments.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-cart',
@@ -11,7 +12,7 @@ import { PaymentsService } from '../shared/payments.service';
 export class CartComponent implements OnInit {
   cart: CartItem[] = JSON.parse(localStorage.getItem('cart') ?? '[]');
   loading = false;
-  constructor(private paymentsService: PaymentsService, private router: Router) { }
+  constructor(private paymentsService: PaymentsService, private router: Router, private toastr: ToastrService ) { }
 
   ngOnInit(): void {
   }
@@ -35,6 +36,9 @@ export class CartComponent implements OnInit {
     this.paymentsService.createPayment(this.cart).subscribe((data) => {
       localStorage.setItem('cart', '[]');
       this.router.navigateByUrl(`/checkout/${data.id}`);
-    })
+    },(error) => {
+      this.loading = false;
+      this.toastr.error('Error generating payment');
+      });
   }
 }

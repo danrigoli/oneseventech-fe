@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartItem } from 'src/app/shared/interfaces/cart.interface';
 import { Product } from '../../shared/interfaces/product.interface';
 import { ApiService } from '../services/api.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-products',
@@ -12,11 +13,10 @@ export class ProductListComponent implements OnInit {
 
   products: Product[] = []
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private toastr: ToastrService) { }
 
   addProductToCart(product: Product) {
     let cart: CartItem[] = JSON.parse(localStorage.getItem('cart') ?? '[]');
-    // check if item is already in the cart
     const productIndex = cart.findIndex((item) => item.product.id === product.id);
     if (productIndex !== -1) {
       cart[productIndex].quantity++;
@@ -24,6 +24,7 @@ export class ProductListComponent implements OnInit {
       cart.push({ product, quantity: 1 });
     }      
     localStorage.setItem('cart', JSON.stringify(cart));
+    this.toastr.success('Product added to cart');
   }
 
   ngOnInit(): void {
