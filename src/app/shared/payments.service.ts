@@ -24,7 +24,7 @@ export class PaymentsService {
     }
 
     public confirmPayment(paymentId: string, paymentData: any): Observable<any> {
-        return this.http.post(this.paymentsApi + "/confirm/" + paymentId, {});
+        return this.http.post(this.paymentsApi + "/confirm/" + paymentId, paymentData);
     }
 
 

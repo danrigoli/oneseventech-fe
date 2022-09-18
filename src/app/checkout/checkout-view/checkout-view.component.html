@@ -1,37 +1,63 @@
 <div class="leading-loose flex justify-center mt-16">
     <form class="max-w-xl m-4 p-10 bg-white rounded shadow-xl" [formGroup]="checkoutForm" #form="ngForm" (submit)="onSubmit()">
       <p class="text-gray-800 font-medium mb-4">Customer information</p>
-      <div class="">
+      <div>
         <label class="block text-sm text-gray-600" for="name">Name</label>
-        <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded" id="name" name="name" formControlName="name" type="text" placeholder="Your Name" aria-label="Name">
+        <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded" name="name" formControlName="name" type="text" placeholder="Your Name" aria-label="Name">
       </div>
       <div class="mt-4">
-        <label class="block text-sm text-gray-600" for="cus_email">Email</label>
-        <input class="w-full px-5  py-1 text-gray-700 bg-gray-200 rounded" id="cus_email" name="cus_email" formControlName="email" type="text" required="" placeholder="Your Email" aria-label="Email">
+        <label class="block text-sm text-gray-600" for="email">Email</label>
+        <input class="w-full px-5  py-1 text-gray-700 bg-gray-200 rounded" name="email" formControlName="email" type="text" placeholder="Your Email" aria-label="Email">
       </div>
       <div class="mt-2">
         <label class=" block text-sm text-gray-600" for="cus_email">Address</label>
-        <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" id="cus_email" name="cus_email" formControlName="address" type="text" required="" placeholder="Street" aria-label="Email">
-      </div>
-      <div class="mt-2">
-        <label class="hidden text-sm block text-gray-600" for="cus_email">City</label>
-        <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" id="cus_email" name="cus_email" formControlName="city" type="text" required="" placeholder="City" aria-label="Email">
+        <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" name="address" formControlName="address" type="text" placeholder="Street" aria-label="Street">
       </div>
       <div class="inline-block mt-2 w-1/2 pr-1">
-        <label class="hidden block text-sm text-gray-600" for="cus_email">Country</label>
-        <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" id="cus_email" name="cus_email" formControlName="country" type="text" required="" placeholder="Country" aria-label="Email">
+        <label class="hidden block text-sm text-gray-600" for="country">Country</label>
+        <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" name="country" formControlName="country" type="text" placeholder="Country" aria-label="Email">
       </div>
       <div class="inline-block mt-2 -mx-1 pl-1 w-1/2">
-        <label class="hidden block text-sm text-gray-600" for="cus_email">Zip</label>
-        <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" id="cus_email"  name="cus_email" formControlName="zip" type="text" required="" placeholder="Zip" aria-label="Email">
+        <label class="hidden block text-sm text-gray-600" for="zip">Zip</label>
+        <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded"  name="zip" formControlName="zip" type="text" placeholder="Zip" aria-label="Email">
+      </div>
+      <div class="inline-block mt-2 w-1/2 pr-1">
+        <label class="hidden text-sm block text-gray-600" for="city">City</label>
+        <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" name="city" formControlName="city" type="text" placeholder="City" aria-label="Email">
+      </div>
+      <div class="inline-block mt-2 -mx-1 w-1/2 pl-1">
+        <label class="hidden text-sm block text-gray-600" for="state">State</label>
+        <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" name="state" formControlName="state" type="text" placeholder="State" aria-label="Email">
       </div>
       <p class="mt-4 text-gray-800 font-medium">Payment information</p>
-      <div class="">
-        <label class="block text-sm text-gray-600" for="cus_name">Card</label>
-        <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" id="cus_name" name="cus_name" type="text" required="" placeholder="Card Number MM/YY CVC" aria-label="Name">
+      <div class="inline-block mt-2 w-1/2">
+        <label class="block text-sm text-gray-600" for="card_number">Card Number</label>
+        <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" name="card_number" formControlName="cardNumber" type="text" placeholder="Card Number MM/YY CVC" aria-label="Name">
+      </div>
+      <div class="inline-block mt-2 w-1/6 pl-1">
+        <label class="hidden text-sm block text-gray-600" for="expiry_moth">Expiry Month</label>
+        <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" name="expiry_moth" formControlName="expiryMonth" type="number" placeholder="MM" aria-label="Expiry Month">
+      </div>
+      <div class="inline-block mt-2 w-1/6 pl-1">
+        <label class="hidden text-sm block text-gray-600" for="expiry_year">Expiry Year</label>
+        <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" name="expiry_year" formControlName="expiryYear" type="number" placeholder="YYYY" aria-label="Expiry Year">
+      </div>
+      <div class="inline-block mt-2 w-1/6 pl-1">
+        <label class="hidden text-sm block text-gray-600" for="cvc">CVC</label>
+        <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" type="password" name="cvc" formControlName="cvc" placeholder="CVC" aria-label="CVC">
       </div>
       <div class="mt-4">
-        <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit" [disabled]="form.invalid">{{ payment ? '$' + (payment.amount / 100) : "Loading amount..." }}</button>
+        <button class="px-4 py-1 text-white font-light flex justify-center tracking-wider bg-gray-900 rounded w-full" type="submit" [disabled]="form.invalid">
+            <ng-container *ngIf="loading;else checkoutButton">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" animate-spin mr-2 w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                </svg>
+                Loading...
+              </ng-container>                      
+              <ng-template #checkoutButton>
+                {{ payment ? '$' + (payment.amount / 100) : "Loading amount..." }}
+              </ng-template>
+        </button>
       </div>
     </form>
   </div>
