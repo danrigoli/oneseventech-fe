@@ -5,11 +5,12 @@ import { ApiService } from './services/api.service';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductCardComponent } from './product-card/product-card.component';
 import { FormsModule } from '@angular/forms';
+import { TruncatePipe } from '../shared/pipes/truncate.pipe';
 
 
 
 @NgModule({
-  declarations: [ ProductListComponent, ProductCardComponent ],
+  declarations: [ ProductListComponent, ProductCardComponent, TruncatePipe ],
   imports: [ CommonModule, ProductsRoutingModule, FormsModule],
   providers: [ ApiService ]
 })

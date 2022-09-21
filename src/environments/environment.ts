@@ -4,6 +4,9 @@
 
 export const environment = {
   production: false,
+  paymentsApiUrl: 'http://localhost:3000',
+  productsApiUrl: 'https://fakestoreapi.com',
+  countriesApiUrl: 'https://restcountries.com/v3.1'
 };
 
 /*

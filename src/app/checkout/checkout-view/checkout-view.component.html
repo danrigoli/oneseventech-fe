@@ -3,51 +3,72 @@
       <p class="text-gray-800 font-medium mb-4">Customer information</p>
       <div>
         <label class="block text-sm text-gray-600" for="name">Name</label>
-        <input class="w-full px-5 py-1 text-gray-700 bg-gray-200 rounded" name="name" formControlName="name" type="text" placeholder="Your Name" aria-label="Name">
+        <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" name="name" formControlName="name" type="text" placeholder="Your Name" aria-label="Name">
+        <span class="text-red-400 font-light text-sm" *ngIf="isInvalid('name')">Name is required</span>
       </div>
       <div class="mt-4">
         <label class="block text-sm text-gray-600" for="email">Email</label>
-        <input class="w-full px-5  py-1 text-gray-700 bg-gray-200 rounded" name="email" formControlName="email" type="text" placeholder="Your Email" aria-label="Email">
+        <input class="w-full px-2  py-1 text-gray-700 bg-gray-200 rounded" name="email" formControlName="email" type="text" placeholder="Your Email" aria-label="Email">
+        <span class="text-red-400 font-light text-sm" *ngIf="isInvalid('email')">Invalid email</span>
       </div>
+
+      <p class="mt-4 text-gray-800 font-medium mb-4">Billing information</p>
       <div class="mt-2">
         <label class=" block text-sm text-gray-600" for="cus_email">Address</label>
         <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" name="address" formControlName="address" type="text" placeholder="Street" aria-label="Street">
+        <span class="text-red-400 font-light text-sm" *ngIf="isInvalid('address')">Address is required</span>
       </div>
-      <div class="inline-block mt-2 w-1/2 pr-1">
-        <label class="hidden block text-sm text-gray-600" for="country">Country</label>
-        <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" name="country" formControlName="country" type="text" placeholder="Country" aria-label="Email">
+      <div class="flex">
+        <div class="inline-block mt-2 w-1/2 pr-1">
+          <label class="block text-sm text-gray-600" for="country">Country</label>
+          <ng-select class="w-full pr-2 custom-select" [loading]="countries.length == 0" placeholder="Country" formControlName="country">
+            <ng-option *ngFor="let country of countries" [value]="country.cca2">{{country.flag + " " + country.name.common}}</ng-option>
+         </ng-select>
+          <!-- <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" name="country" formControlName="country" type="text" placeholder="Country" aria-label="Email"> -->
+        </div>
+        <div class="inline-block mt-2 -mx-1 pl-1 w-1/2">
+          <label class="block text-sm text-gray-600" for="zip">Zip</label>
+          <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded"  name="zip" formControlName="zip" type="text" placeholder="Zip" aria-label="Email">
+          <span class="text-red-400 font-light text-sm" *ngIf="isInvalid('zip')">Zip is required</span>
+        </div>
       </div>
-      <div class="inline-block mt-2 -mx-1 pl-1 w-1/2">
-        <label class="hidden block text-sm text-gray-600" for="zip">Zip</label>
-        <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded"  name="zip" formControlName="zip" type="text" placeholder="Zip" aria-label="Email">
+      <div class="flex">
+        <div class="inline-block mt-2 w-1/2 pr-1">
+          <label class="text-sm block text-gray-600" for="city">City</label>
+          <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" name="city" formControlName="city" type="text" placeholder="City" aria-label="Email">
+          <span class="text-red-400 font-light text-sm" *ngIf="isInvalid('city')">City is required</span>
+        </div>
+        <div class="inline-block mt-2 -mx-1 w-1/2 pl-1">
+          <label class="text-sm block text-gray-600" for="state">State</label>
+          <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" name="state" formControlName="state" type="text" placeholder="State" aria-label="Email">
+          <span class="text-red-400 font-light text-sm" *ngIf="isInvalid('state')">State is required</span>
+        </div>
       </div>
-      <div class="inline-block mt-2 w-1/2 pr-1">
-        <label class="hidden text-sm block text-gray-600" for="city">City</label>
-        <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" name="city" formControlName="city" type="text" placeholder="City" aria-label="Email">
-      </div>
-      <div class="inline-block mt-2 -mx-1 w-1/2 pl-1">
-        <label class="hidden text-sm block text-gray-600" for="state">State</label>
-        <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" name="state" formControlName="state" type="text" placeholder="State" aria-label="Email">
-      </div>
+      
       <p class="mt-4 text-gray-800 font-medium">Payment information</p>
-      <div class="inline-block mt-2 w-1/2">
-        <label class="block text-sm text-gray-600" for="card_number">Card Number</label>
-        <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" name="card_number" formControlName="cardNumber" type="text" placeholder="Card Number MM/YY CVC" aria-label="Name">
-      </div>
-      <div class="inline-block mt-2 w-1/6 pl-1">
-        <label class="hidden text-sm block text-gray-600" for="expiry_moth">Expiry Month</label>
-        <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" name="expiry_moth" formControlName="expiryMonth" type="number" placeholder="MM" aria-label="Expiry Month">
-      </div>
-      <div class="inline-block mt-2 w-1/6 pl-1">
-        <label class="hidden text-sm block text-gray-600" for="expiry_year">Expiry Year</label>
-        <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" name="expiry_year" formControlName="expiryYear" type="number" placeholder="YYYY" aria-label="Expiry Year">
-      </div>
-      <div class="inline-block mt-2 w-1/6 pl-1">
-        <label class="hidden text-sm block text-gray-600" for="cvc">CVC</label>
-        <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" type="password" name="cvc" formControlName="cvc" placeholder="CVC" aria-label="CVC">
+      <div class="flex flex-col md:flex-row">
+        <div class="inline-block mt-2 w-full md:w-1/2 ">
+          <label class="block text-sm text-gray-600" for="card_number">Card Number</label>
+          <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" name="card_number" formControlName="cardNumber" type="text" placeholder="Card Number MM/YY CVC" aria-label="Name">
+          <span class="text-red-400 font-light text-sm" *ngIf="isInvalid('cardNumber')">Invalid card number</span>
+        </div>
+        <div class="flex w-full md:w-1/2">
+          <div class="inline-block mt-2 w-2/6 pl-1">
+            <label class="text-sm block text-gray-600" for="expiry_moth">Month</label>
+            <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" name="expiry_month" formControlName="expiryMonth" type="number" placeholder="MM" aria-label="Expiry Month">
+          </div>
+          <div class="inline-block mt-2 w-2/6 pl-1">
+            <label class="text-sm block text-gray-600" for="expiry_year">Year</label>
+            <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" name="expiry_year" formControlName="expiryYear" type="number" placeholder="YYYY" aria-label="Expiry Year">
+          </div>
+          <div class="inline-block mt-2 w-2/6 pl-1">
+            <label class="text-sm block text-gray-600" for="cvc">CVC</label>
+            <input class="w-full px-2 py-1 text-gray-700 bg-gray-200 rounded" type="password" name="cvc" formControlName="cvc" placeholder="CVC" aria-label="CVC">
+          </div>
+        </div>
       </div>
       <div class="mt-4">
-        <button class="px-4 py-1 text-white font-light flex justify-center tracking-wider bg-gray-900 rounded w-full" type="submit" [disabled]="form.invalid">
+        <button class="px-4 py-1 text-white font-light flex justify-center tracking-wider bg-gray-900 rounded w-full disabled:bg-gray-400" type="submit">
             <ng-container *ngIf="loading;else checkoutButton">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" animate-spin mr-2 w-6 h-6">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />

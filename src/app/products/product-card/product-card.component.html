@@ -3,7 +3,7 @@
       <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
           <img [src]="product.image" [alt]="product.title" class="h-20 w-full object-contain object-center group-hover:opacity-75 transition ease-in-out md:h-64">
       </div>
-      <h3 class="my-4 text-sm text-gray-700">{{product.title}}</h3>
+      <h3 class="my-4 text-sm text-gray-700">{{product.title | truncate:60}}</h3>
       <p class="text-lg font-medium text-gray-900 mt-auto">${{product.price}}</p>
       <button type="button" (click)="addProductToCart(product)" class="mt-4 text-center inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
         Add to cart

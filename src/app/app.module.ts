@@ -6,10 +6,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { HttpClientModule } from '@angular/common/http';
-import { TruncatePipe } from './shared/pipes/truncate.pipe';
 import { CartComponent } from './cart/cart.component';
 import { FormsModule } from '@angular/forms';
-import { PaymentsService } from './shared/payments.service';
+import { PaymentsService } from './shared/services/payments.service';
+import { CountriesService } from './shared/services/countries.service';
 import { ToastrModule } from 'ngx-toastr';
 
 
@@ -17,7 +17,6 @@ import { ToastrModule } from 'ngx-toastr';
   declarations: [
     AppComponent,
     NavbarComponent,
-    TruncatePipe,
     CartComponent,
   ],
   imports: [
@@ -28,7 +27,7 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot(),
     BrowserAnimationsModule
   ],
-  providers: [ PaymentsService ],
+  providers: [ PaymentsService, CountriesService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

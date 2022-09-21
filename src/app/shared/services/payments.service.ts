@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { Observable } from "rxjs";
-import { Product } from "./interfaces/product.interface";
-import { Payment } from "./interfaces/payment.interface";
-import { CartItem } from "./interfaces/cart.interface";
+import { Payment } from "../interfaces/payment.interface";
+import { CartItem } from "../interfaces/cart.interface";
+import { environment } from "src/environments/environment";
 
 
 @Injectable({
@@ -11,7 +11,7 @@ import { CartItem } from "./interfaces/cart.interface";
 })
 export class PaymentsService {
 
-    private paymentsApi = "http://127.0.0.1:3000/payments"
+    private paymentsApi = environment.paymentsApiUrl + "/payments"
 
     public constructor(public http: HttpClient) {}
 

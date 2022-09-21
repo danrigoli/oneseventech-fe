@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartItem } from '../shared/interfaces/cart.interface';
-import { PaymentsService } from '../shared/payments.service';
+import { PaymentsService } from '../shared/services/payments.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -19,6 +19,9 @@ export class CartComponent implements OnInit {
 
   modifyQuantity(item: CartItem, quantity: number) {
     item.quantity = quantity;
+    if (item.quantity === 0) {
+      this.removeItem(item);
+    }
     localStorage.setItem('cart', JSON.stringify(this.cart));
   }
 
